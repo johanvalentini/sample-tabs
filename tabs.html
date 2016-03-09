@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample Tabs</title>
+	<style type="text/css">
+
+		.tabs .tab-page {
+			display: none;
+		}
+
+		.tabs .tab-page.active {
+			display: block;
+		}
+
+	</style>
+</head>
+<body>
+<div class="tabs">
+    <div class="tab-nav" data-target="#tab1">1</div>
+    <div class="tab-nav" data-target="#tab2">1</div>
+    <div class="tab-nav" data-target="#tab3">1</div>
+    <div class="tab-pages">
+        <div id="tab1" class="tab-page active">page1</div>
+        <div id="tab2" class="tab-page">page2</div>
+        <div id="tab3" class="tab-page">page3</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	// Get all the navigation elements
+    var tab_navs = document.querySelectorAll(".tab-nav");
+
+    function toggleTabPage(event) {
+    	// Get the current active tab-pages
+    	var tab_pages = this.parentElement.querySelectorAll('.tab-page.active')
+
+    	// Remove the .active class on them
+        for (var i = tab_pages.length - 1; i >= 0; i--) {
+            tab_pages[i].classList.remove('active')
+        }
+
+        // Add the .active class to the clicked .tab-nav elements data-target value
+        document.querySelector(this.getAttribute('data-target')).classList.add("active")
+    }
+
+    // Create a eventlistener on each of them, that fires toggleTabPage
+    for (var i = tab_navs.length - 1; i >= 0; i--) {
+        tab_navs[i].addEventListener("click", toggleTabPage)
+    }
+</script>
+</body>
+</html>
